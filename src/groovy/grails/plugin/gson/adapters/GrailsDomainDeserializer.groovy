@@ -1,6 +1,9 @@
 package grails.plugin.gson.adapters
 
 import static org.codehaus.groovy.grails.web.binding.DataBindingUtils.bindObjectToDomainInstance
+
+import org.codehaus.groovy.grails.plugins.support.aware.GrailsApplicationAware
+
 import grails.util.GrailsNameUtils
 import groovy.util.logging.Slf4j
 
@@ -19,10 +22,9 @@ import com.google.gson.*
  * an update to an existing one.
  */
 @Slf4j
-class GrailsDomainDeserializer<T> implements JsonDeserializer<T> {
+class GrailsDomainDeserializer<T> implements JsonDeserializer<T>, GrailsApplicationAware {
 
-  
-	final GrailsApplication grailsApplication
+	GrailsApplication grailsApplication
 
   T deserialize(JsonElement element, Type type, JsonDeserializationContext context) {
 		def domainClass = getDomainClassFor(type)

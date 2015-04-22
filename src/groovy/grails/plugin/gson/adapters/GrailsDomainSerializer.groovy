@@ -1,5 +1,7 @@
 package grails.plugin.gson.adapters
 
+import org.codehaus.groovy.grails.plugins.support.aware.GrailsApplicationAware
+
 import groovy.util.logging.Slf4j
 
 import java.lang.reflect.Type
@@ -12,7 +14,7 @@ import org.springframework.util.ReflectionUtils
 import com.google.gson.*
 
 @Slf4j
-class GrailsDomainSerializer<T> implements JsonSerializer<T> {
+class GrailsDomainSerializer<T> implements JsonSerializer<T>, GrailsApplicationAware {
 
   GrailsApplication grailsApplication
   ProxyHandler proxyHandler
