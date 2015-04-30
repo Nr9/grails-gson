@@ -17,7 +17,6 @@ class GsonUnitTestMixin extends GrailsUnitTestMixin {
 
 		// this has to be called first as there's no declarative way to enforce
 		// execution order
-		initGrailsApplication()
 
 		defineBeans {
 
@@ -28,18 +27,18 @@ class GsonUnitTestMixin extends GrailsUnitTestMixin {
 			grailsProxyHandler DefaultEntityProxyHandler
 
 			domainSerializer (GrailsDomainSerializer){ bean ->
-        bean.autowire = "byName"
-        proxyHandler = ref('grailsProxyHandler')
-      }
+                bean.autowire = "byName"
+                proxyHandler = ref('grailsProxyHandler')
+            }
 			domainDeserializer (GrailsDomainDeserializer){ bean ->
-        bean.autowire = "byName"
-      }
+                bean.autowire = "byName"
+            }
 
 			gsonBuilder(GsonBuilderFactory) {
 				// GrailsUnitTestMixin ignores PluginManagerAware so we need to wire
 				// this explicitly
-				pluginManager = ref('pluginManager')s
-        bean.autowire = "byName"
+				pluginManager = ref('pluginManager')
+                bean.autowire = "byName"
 			}
 		}
 	}
