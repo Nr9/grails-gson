@@ -91,23 +91,22 @@ class GrailsDomainSerializer<T> implements JsonSerializer<T>, GrailsApplicationA
 
   @Lazy
   private FieldNamingStrategy fieldNamingStrategy = {
-    grailsApplication.config.get('grails.converters.gson.fieldNamingPolicy', FieldNamingPolicy.IDENTITY)
+    grailsApplication.config.grails.converters.gson.fieldNamingPolicy ?: FieldNamingPolicy.IDENTITY
   }()
 
   private boolean shouldResolveProxy() {
-    
-    grailsApplication.config.get('grails.converters.gson.resolveProxies', true)
+    grailsApplication.config.grails.converters.gson.resolveProxies ?: true
   }
 
   private boolean shouldSerializeProxy() {
-    grailsApplication.config.get('grails.converters.gson.serializeProxies', true)
+    grailsApplication.config.grails.converters.gson.serializeProxies ?: true
   }
 
   private boolean shouldOutputClass() {
-    grailsApplication.config.get('grails.converters.gson.domain.include.class', grailsApplication.config.get('grails.converters.domain.include.class', false))
+    grailsApplication.config.grails.converters.gson.domain.include.class ?: grailsApplication.config.grails.converters.domain.include.class ?: false
   }
 
   private boolean shouldOutputVersion() {
-    grailsApplication.config.get('grails.converters.gson.domain.include.version', grailsApplication.config.get('grails.converters.domain.include.version', false))
+    grailsApplication.config.grails.converters.gson.domain.include.version ?: grailsApplication.config.grails.converters.domain.include.version ?: false
   }
 }
